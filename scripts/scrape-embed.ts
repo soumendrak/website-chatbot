@@ -28,7 +28,7 @@ async function extractDataFromUrls(urls: string[]): Promise<Document[]> {
   }
   console.log('data extracted from urls');
   const json = JSON.stringify(documents);
-  await fs.writeFile('franknotion.json', json);
+  await fs.writeFile('soumendraBlog.json', json);
   console.log('json file containing data saved on disk');
   return documents;
 }
@@ -60,6 +60,6 @@ async function splitDocsIntoChunks(docs: Document[]): Promise<Document[]> {
     //embed docs into supabase
     await embedDocuments(supabaseClient, docs, new OpenAIEmbeddings());
   } catch (error) {
-    console.log('error occured:', error);
+    console.log('error occurred:', error);
   }
 })(urls);

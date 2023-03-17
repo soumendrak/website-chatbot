@@ -25,15 +25,15 @@ export class CustomWebLoader
 
   async load(): Promise<Document[]> {
     const $ = await this.scrape();
-    const title = $('h1.entry-title').text();
+    const title = $('h1.css-1k5pqev').text();
     const date = $('meta[property="article:published_time"]').attr('content');
 
-    const content = $('.entry-content')
-      .clone()
-      .find('div.elementor, style')
-      .remove()
-      .end()
-      .text();
+    const content = $('div.prose').text();
+      // .clone()
+      // .find()
+      // .remove()
+      // .end()
+      // .text();
 
     const cleanedContent = content.replace(/\s+/g, ' ').trim();
 
