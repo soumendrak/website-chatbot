@@ -1,18 +1,17 @@
-import { Document } from 'langchain/document';
+import {Document} from 'langchain/document';
 import * as fs from 'fs/promises';
-import { CustomWebLoader } from '@/utils/custom_web_loader';
-import type { SupabaseClient } from '@supabase/supabase-js';
-import { Embeddings, OpenAIEmbeddings } from 'langchain/embeddings';
-import { SupabaseVectorStore } from 'langchain/vectorstores';
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
-import { supabaseClient } from '@/utils/supabase-client';
-import { urls } from '@/config/notionurls';
+import {CustomWebLoader} from '@/utils/custom_web_loader';
+import type {SupabaseClient} from '@supabase/supabase-js';
+import {Embeddings, OpenAIEmbeddings} from 'langchain/embeddings';
+import {SupabaseVectorStore} from 'langchain/vectorstores';
+import {RecursiveCharacterTextSplitter} from 'langchain/text_splitter';
+import {supabaseClient} from '@/utils/supabase-client';
+import {urls} from '@/config/websiteurls';
 
 async function extractDataFromUrl(url: string): Promise<Document[]> {
   try {
     const loader = new CustomWebLoader(url);
-    const docs = await loader.load();
-    return docs;
+    return await loader.load();
   } catch (error) {
     console.error(`Error while extracting data from ${url}: ${error}`);
     return [];
